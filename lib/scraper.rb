@@ -1,5 +1,6 @@
 class Scraper
-  def initialize(url)
+  PRONTO_URL = 'https://secure.prontocycleshare.com/data/stations.json'
+  def initialize(url = PRONTO_URL)
     @url = url
   end
 
