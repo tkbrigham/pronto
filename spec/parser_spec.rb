@@ -4,11 +4,11 @@ require 'parser'
 RSpec.describe Parser do
   let(:parser) { Parser.new }
 
-  after(:each) do
-    parser.parse_file
-  end
+  describe "#parse_to_hash" do
+    after(:each) do
+      parser.parse_to_hash
+    end
 
-  describe "#parse_file" do
     it "reads from tmp/pronto_scrape.txt" do
       file = "tmp/pronto_scrape.txt"
       arg = 'r'
@@ -20,8 +20,14 @@ RSpec.describe Parser do
       expect(JSON).to receive(:parse)
     end
 
-    it "creates Station models" do
-      expect(Station).to receive(:new)
+    it "returns Hash" do
+      expect(parser.parse_to_hash).to be_a(Hash)
+    end
+  end
+
+  describe "#update_stations" do
+    it "finds or initializes stations" do
+      expect(Station).to receive(:find_or_initialize_by)
     end
   end
 end

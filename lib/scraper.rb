@@ -10,9 +10,7 @@ class Scraper
 
   def download
     File.open('tmp/pronto_scrape.txt', 'w') do |f|
-      f << get_response.body
-      f << "\n"
-      f.close
+      f << get_response.body + "\n"
       return true
     end
   end

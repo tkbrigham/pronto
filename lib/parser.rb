@@ -5,9 +5,9 @@ class Parser
     @file = file
   end
 
-  def parse_file
+  def parse_to_hash
     File.open('tmp/pronto_scrape.txt', 'r') do |f|
-      h = JSON.parse(f.read)
+      JSON.parse(f.read)
     end
   end
 end
