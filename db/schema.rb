@@ -11,9 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160306022643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "stations", force: :cascade do |t|
+    t.integer  "pronto_id",            null: false
+    t.string   "station_name"
+    t.string   "terminal_name"
+    t.integer  "status"
+    t.boolean  "blocked"
+    t.boolean  "suspended"
+    t.boolean  "out_of_service"
+    t.datetime "latest_update"
+    t.datetime "latest_communication"
+    t.boolean  "has_key_dispenser"
+    t.boolean  "has_keys_available"
+    t.decimal  "lat"
+    t.decimal  "lon"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "stations", ["pronto_id"], name: "index_stations_on_pronto_id", using: :btree
 
 end

@@ -1,7 +1,7 @@
 class CreateStations < ActiveRecord::Migration
   def change
     create_table :stations do |t|
-      t.integer :pronto_id
+      t.integer :pronto_id, null: false
       t.string :station_name
       t.string :terminal_name
       t.integer :status
@@ -17,5 +17,7 @@ class CreateStations < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :stations, :pronto_id
   end
 end
