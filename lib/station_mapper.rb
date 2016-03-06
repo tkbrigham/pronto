@@ -19,11 +19,34 @@ class StationMapper
     'bx' => 'bikes_unavailable'
   }
 
-  def initialize(raw_json)
+  DATETIME_FIELDS = ['latest_update', 'latest_communication']
+
+  def initialize(raw_json = {})
     @raw = raw_json
   end
 
   def remap
-    @raw.map { |k, v| [MAPPINGS[k], v] }.to_h
+    @raw.map { |k, v| [MAPPINGS[k], convert_datetime(k,v)] }.to_h
+  end
+
+  def convert_datetime(key, value)
+    if MAPPINGS[key].in?(DATETIME_FIELDS)
+      case value.size
+      when 13
+        Time.at(value/1000)
+      when 10
+        Time.at(value)
+      else
+        raise ArgumentError, "Datetime UTC value has unrecognized number of digits"
+      end
+    else
+      value
+    end
+  end
+end
+
+class Fixnum
+  def size
+    Math.log10(self).to_i + 1
   end
 end
