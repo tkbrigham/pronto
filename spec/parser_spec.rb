@@ -2,8 +2,10 @@ require 'rails_helper'
 require 'parser'
 
 RSpec.describe Parser do
-  before(:all) do
-    @parser = Parser.new
+  let(:parser) { Parser.new }
+
+  after(:each) do
+    parser.parse_file
   end
 
   describe "#parse_file" do
@@ -12,7 +14,14 @@ RSpec.describe Parser do
       arg = 'r'
 
       expect(File).to receive(:open).with(file, arg).exactly(1).times
-      @parser.parse_file
+    end
+
+    it "parses file into JSON" do
+      expect(JSON).to receive(:parse)
+    end
+
+    it "creates Station models" do
+      expect(Station).to receive(:new)
     end
   end
 end
