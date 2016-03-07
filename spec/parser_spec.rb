@@ -24,9 +24,12 @@ RSpec.describe Parser do
       expect(obj).to receive(:update!)
     end
 
-    xit "changes count" do
+    it "changes count" do
+      station = build(:station)
+      binding.pry
       expect{ parser.update_stations }.to change{Station.count}.by(54)
       ## ADD FACTORY GIRL TO MAKE THIS EASY
+      # Need to require whole support directory
     end
   end
 end
