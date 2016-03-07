@@ -5,7 +5,7 @@ RSpec.describe Parser do
   let(:parser) { Parser.new }
 
   describe "#update_stations" do
-    let(:obj) { double('obj') }
+    let(:obj) { double(Station) }
 
     before(:each) do
       allow(Station).to receive(:find_or_initialize_by).and_return(obj)
@@ -22,6 +22,11 @@ RSpec.describe Parser do
 
     it "updates found stations" do
       expect(obj).to receive(:update!)
+    end
+
+    xit "changes count" do
+      expect{ parser.update_stations }.to change{Station.count}.by(54)
+      ## ADD FACTORY GIRL TO MAKE THIS EASY
     end
   end
 end
