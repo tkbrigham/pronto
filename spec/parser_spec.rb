@@ -27,7 +27,7 @@ RSpec.describe Parser do
 
     it "doesn't create new stations when they exist" do
       Station.create!(pronto_id: 66)
-      expect{ parser.update_stations }.to change { Station.count }.by(53)
+      expect{ parser.update_stations }.to change{ Station.count }.by(53)
       expect(Station.count).to eq(54)
     end
 
@@ -36,6 +36,10 @@ RSpec.describe Parser do
       expect(s.blocked).to eq(nil)
       parser.update_stations
       expect(s.reload.blocked).to eq(false)
+    end
+
+    it "creates StationStats" do
+      expect{ parser.update_stations }.to change{ StationStat.count }.by(54)
     end
   end
 end
