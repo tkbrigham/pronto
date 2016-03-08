@@ -27,7 +27,7 @@ RSpec.describe StationMapper do
 
   describe "#remap" do
     before(:all) do
-      json = JSON.parse(File.open('spec/support/station.json','r').read)
+      json = JSON.parse(File.open('spec/fixtures/station.json','r').read)
       @mapper = StationMapper.new(json)
     end
 

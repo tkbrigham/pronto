@@ -1,5 +1,5 @@
 class Parser
-  DEFAULT_FILE = 'tmp/pronto_text.txt'
+  DEFAULT_FILE = 'tmp/pronto_scrape.txt'
 
   def initialize(file = DEFAULT_FILE)
     @file = file
@@ -14,7 +14,7 @@ class Parser
   private
 
   def parse_to_hash
-    File.open('tmp/pronto_scrape.txt', 'r') do |f|
+    File.open(@file, 'r') do |f|
       JSON.parse(f.read)
     end
   end
