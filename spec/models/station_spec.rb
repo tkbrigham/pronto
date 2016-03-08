@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Station, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "validates unique attributes" do
+    Station.create!(pronto_id: 66)
+    expect{ Station.create!(pronto_id: 66) }.to raise_error(ActiveRecord::RecordInvalid)
+  end
 end
