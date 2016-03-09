@@ -27,9 +27,8 @@ class Parser
   end
 
   def add_stat(raw_hash)
-    remap = StationMapper.new(raw_hash).remap
-    attrs = remap.slice(*stat_fields)
-    StationStat.create(attrs)
+    attrs = StationMapper.new(raw_hash).remap.slice(*stat_fields)
+    StationStat.create!(attrs)
   end
 
   def stat_only_fields
