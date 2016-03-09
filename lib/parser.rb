@@ -5,7 +5,7 @@ class Parser
     @file = file
   end
 
-  def update_stations
+  def parse
     parse_to_hash['stations'].each do |station|
       create_or_update(station)
       add_stat(station)
@@ -28,7 +28,8 @@ class Parser
 
   def add_stat(raw_hash)
     attrs = StationMapper.new(raw_hash).remap.slice(*stat_fields)
-    StationStat.create!(attrs)
+    station = Station.find_by(pronto_id: attrs['pronto_id'])
+    StationStat.create!(attrs.merge(station: station))
   end
 
   def stat_only_fields

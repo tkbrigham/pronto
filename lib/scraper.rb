@@ -8,8 +8,8 @@ class Scraper
     Net::HTTP.get_response(URI(@url))
   end
 
-  def download
-    File.open('tmp/pronto_scrape.txt', 'w') do |f|
+  def download(filename = "pronto_scrape.txt")
+    File.open("tmp/#{filename}", 'w') do |f|
       f << get_response.body + "\n"
       return true
     end

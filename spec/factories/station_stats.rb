@@ -13,6 +13,6 @@ FactoryGirl.define do
     docks_unavailable 1
     bikes_available 1
     bikes_unavailable 1
-    station nil
+    station
   end
 end
