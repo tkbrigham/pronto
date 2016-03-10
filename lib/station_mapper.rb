@@ -31,7 +31,7 @@ class StationMapper
 
   def convert_datetime(key, value)
     if MAPPINGS[key].in?(DATETIME_FIELDS)
-      case value.size
+      case fixnum_size(value)
       when 13
         Time.at(value/1000)
       when 10
@@ -43,10 +43,8 @@ class StationMapper
       value
     end
   end
-end
 
-class Fixnum
-  def size
-    Math.log10(self).to_i + 1
+  def fixnum_size(fixnum)
+    return (Math.log10(fixnum).to_i + 1)
   end
 end

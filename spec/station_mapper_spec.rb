@@ -14,7 +14,6 @@ RSpec.describe StationMapper do
 
     it "parses 10 digit UTC correctly" do
       ten_dig = utc/1000
-      expect(ten_dig.size).to eq(10)
       expect(mapper.convert_datetime(key, ten_dig)).to eq(correct)
     end
 
