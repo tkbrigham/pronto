@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :station_stat do
-    pronto_id 1
     status 1
     blocked false
     suspended false

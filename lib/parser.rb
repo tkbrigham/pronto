@@ -28,7 +28,7 @@ class Parser
 
   def add_stat(raw_hash)
     attrs = StationMapper.new(raw_hash).remap.slice(*stat_fields)
-    station = Station.find_by(pronto_id: attrs['pronto_id'])
+    station = Station.find_by(pronto_id: attrs.delete('pronto_id'))
     StationStat.create!(attrs.merge(station: station))
   end
 
@@ -40,7 +40,7 @@ class Parser
   end
 
   def stat_fields
-    ['pronto_id',
+    [ 'pronto_id',
       'status',
       'blocked',
       'suspended',

@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308220623) do
+ActiveRecord::Schema.define(version: 20160310013716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "station_stats", force: :cascade do |t|
-    t.integer  "pronto_id"
+    t.integer  "station_id"
     t.integer  "status"
     t.boolean  "blocked"
     t.boolean  "suspended"
@@ -30,12 +30,26 @@ ActiveRecord::Schema.define(version: 20160308220623) do
     t.integer  "docks_unavailable"
     t.integer  "bikes_available"
     t.integer  "bikes_unavailable"
-    t.integer  "station_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "station_stats", ["station_id"], name: "index_station_stats_on_station_id", using: :btree
+
+  create_table "station_summaries", force: :cascade do |t|
+    t.integer  "station_id",  null: false
+    t.integer  "time_of_day"
+    t.decimal  "avg_dock_a"
+    t.decimal  "avg_dock_u"
+    t.decimal  "avg_bike_a"
+    t.decimal  "avg_bike_u"
+    t.integer  "samples",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "station_summaries", ["station_id"], name: "index_station_summaries_on_station_id", using: :btree
+  add_index "station_summaries", ["time_of_day"], name: "index_station_summaries_on_time_of_day", using: :btree
 
   create_table "stations", force: :cascade do |t|
     t.integer  "pronto_id",            null: false
@@ -58,4 +72,5 @@ ActiveRecord::Schema.define(version: 20160308220623) do
   add_index "stations", ["pronto_id"], name: "index_stations_on_pronto_id", using: :btree
 
   add_foreign_key "station_stats", "stations"
+  add_foreign_key "station_summaries", "stations"
 end
