@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160310013716) do
     t.decimal  "avg_dock_u"
     t.decimal  "avg_bike_a"
     t.decimal  "avg_bike_u"
-    t.integer  "samples",     null: false
+    t.integer  "samples"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
