@@ -1,7 +1,5 @@
 class Parser
-  DEFAULT_FILE = 'tmp/pronto_scrape.txt'
-
-  def initialize(file = DEFAULT_FILE)
+  def initialize(file = default_file)
     @file = file
   end
 
@@ -13,6 +11,10 @@ class Parser
   end
 
   private
+
+  def default_file
+    Dir['tmp/*.txt'].last
+  end
 
   def parse_to_hash
     File.open(@file, 'r') do |f|

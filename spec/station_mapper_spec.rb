@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'station_mapper'
 
 RSpec.describe StationMapper do
   let(:mapper) { StationMapper.new }
