@@ -7,4 +7,11 @@ RSpec.describe StationSummary, type: :model do
     expect(summary).to respond_to(:station)
     expect(summary).to respond_to(:stats)
   end
+
+  describe "#last_stat" do
+    it "should return StationStat" do
+      expect(summary).to respond_to(:last_stat)
+      expect(summary.last_stat).to be_an_instance_of(StationStat)
+    end
+  end
 end

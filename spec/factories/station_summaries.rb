@@ -7,5 +7,6 @@ FactoryGirl.define do
     avg_bike_a "9.99"
     avg_bike_u "9.99"
     samples 1
+    last_stat
   end
 end

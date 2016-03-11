@@ -8,6 +8,7 @@ class CreateStationSummaries < ActiveRecord::Migration
       t.decimal :avg_bike_a
       t.decimal :avg_bike_u
       t.integer :samples
+      t.integer :last_stat_id
 
       t.timestamps null: false
     end
