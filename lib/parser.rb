@@ -8,6 +8,7 @@ class Parser
       create_or_update(station)
       add_stat(station)
     end
+    @file
   end
 
   private

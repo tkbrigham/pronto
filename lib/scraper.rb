@@ -7,7 +7,7 @@ class Scraper
   def download(filename = default_file)
     File.open("tmp/#{filename}", 'w') do |f|
       f << get_response.body + "\n"
-      return true
+      return f.path
     end
   end
 
