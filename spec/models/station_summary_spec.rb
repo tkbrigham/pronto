@@ -7,6 +7,10 @@ RSpec.describe StationSummary, type: :model do
     expect(summary).to respond_to(:station, :stats, :last_stat)
   end
 
+  it "validates presence of Station" do
+    expect{ StationSummary.create! }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   describe "#last_stat" do
     it "should return StationStat" do
       expect(summary.last_stat).to be_an_instance_of(StationStat)
