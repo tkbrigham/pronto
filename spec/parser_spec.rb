@@ -25,4 +25,14 @@ RSpec.describe Parser do
       expect{ parser.parse }.to change{ StationStat.count }.by(54)
     end
   end
+
+  describe "#timestamp" do
+    it "should return integer" do
+      expect(parser.timestamp).to be_a(Integer)
+    end
+
+    it "should be between 0-2359" do
+      expect(0..2359).to cover(parser.timestamp)
+    end
+  end
 end

@@ -1,6 +1,7 @@
 class Parser
   def initialize(file = default_file)
     @file = file
+    @timestamp = Time.now
   end
 
   def parse
@@ -9,6 +10,10 @@ class Parser
       add_stat(station)
     end
     @file
+  end
+
+  def timestamp
+    @timestamp.strftime("%H%M").to_i
   end
 
   private
