@@ -8,10 +8,8 @@ RSpec.describe StationStat, type: :model do
     expect{ StationStat.create!(station: station) }.not_to raise_error
   end
 
-  it 'sets timestamp after save' do
-    station_stat = build(:station_stat)
-    expect(station_stat.timestamp).to be_nil
-    station_stat.save
-    expect(station_stat.timestamp).to be_an(Integer)
+  it 'sets timestamp after create' do
+    expect(build(:station_stat).timestamp).to be_nil
+    expect(create(:station_stat).timestamp).to be_an(Integer)
   end
 end
