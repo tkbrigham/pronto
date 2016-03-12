@@ -4,16 +4,10 @@ RSpec.describe StationSummary, type: :model do
   let(:summary) { build(:station_summary) }
 
   it "should respond to associations" do
-    expect(summary).to respond_to(:station, :stats, :last_stat)
+    expect(summary).to respond_to(:station, :stats)
   end
 
   it "validates presence of Station" do
     expect{ StationSummary.create! }.to raise_error(ActiveRecord::RecordInvalid)
-  end
-
-  describe "#last_stat" do
-    it "should return StationStat" do
-      expect(summary.last_stat).to be_an_instance_of(StationStat)
-    end
   end
 end

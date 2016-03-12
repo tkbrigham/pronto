@@ -37,16 +37,15 @@ ActiveRecord::Schema.define(version: 20160310013716) do
   add_index "station_stats", ["station_id"], name: "index_station_stats_on_station_id", using: :btree
 
   create_table "station_summaries", force: :cascade do |t|
-    t.integer  "station_id",   null: false
+    t.integer  "station_id",  null: false
     t.integer  "time_of_day"
     t.decimal  "avg_dock_a"
     t.decimal  "avg_dock_u"
     t.decimal  "avg_bike_a"
     t.decimal  "avg_bike_u"
     t.integer  "samples"
-    t.integer  "last_stat_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "station_summaries", ["station_id"], name: "index_station_summaries_on_station_id", using: :btree
