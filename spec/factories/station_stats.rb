@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :station_stat, aliases: [:last_stat] do
+    timestamp nil
     status 1
     blocked false
     suspended false

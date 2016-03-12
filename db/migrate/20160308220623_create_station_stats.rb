@@ -1,7 +1,8 @@
 class CreateStationStats < ActiveRecord::Migration
   def change
     create_table :station_stats do |t|
-      t.references :station, index: true, foreign_key: true
+      t.references :station, foreign_key: true, null: false
+      t.integer :timestamp
       t.integer :status
       t.boolean :blocked
       t.boolean :suspended

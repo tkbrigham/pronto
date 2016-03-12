@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160310013716) do
 
   create_table "station_stats", force: :cascade do |t|
     t.integer  "station_id"
+    t.integer  "timestamp"
     t.integer  "status"
     t.boolean  "blocked"
     t.boolean  "suspended"
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160310013716) do
   end
 
   add_index "station_stats", ["station_id"], name: "index_station_stats_on_station_id", using: :btree
+  add_index "station_stats", ["timestamp"], name: "index_station_stats_on_timestamp", using: :btree
 
   create_table "station_summaries", force: :cascade do |t|
     t.integer  "station_id",  null: false
