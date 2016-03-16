@@ -8,6 +8,6 @@ class StationStat < ActiveRecord::Base
   private
 
   def set_timestamp
-    self.update!(timestamp: created_at.strftime("%H%M").to_i)
+    self.update!(timestamp: created_at.strftime("%H%M").to_i) if timestamp.blank?
   end
 end

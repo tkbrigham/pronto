@@ -1,12 +1,14 @@
 class StatSummarizer
-  def initialize(timestamp)
-    @timestamp = timestamp
+  def initialize(stat)
+    @stat = stat
   end
 
   def summarize
+
   end
 
-  def find_or_create_summary(stat)
-    StationSummary.find_or_create_by(station: stat.station, timestamp: stat.timestamp)
+  def find_or_create_summary
+    StationSummary.find_or_create_by(
+      station: @stat.station, timestamp: @stat.timestamp)
   end
 end
