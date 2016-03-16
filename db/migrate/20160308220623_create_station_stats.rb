@@ -11,10 +11,10 @@ class CreateStationStats < ActiveRecord::Migration
       t.boolean :has_keys_available
       t.datetime :latest_update
       t.datetime :latest_communication
-      t.integer :docks_available
-      t.integer :docks_unavailable
-      t.integer :bikes_available
-      t.integer :bikes_unavailable
+      t.integer :docks_a
+      t.integer :docks_u
+      t.integer :bikes_a
+      t.integer :bikes_u
 
       t.timestamps null: false
     end

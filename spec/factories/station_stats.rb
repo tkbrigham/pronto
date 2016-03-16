@@ -9,10 +9,10 @@ FactoryGirl.define do
     has_keys_available false
     latest_update "2016-03-08 14:06:23"
     latest_communication "2016-03-08 14:06:23"
-    docks_available 1
-    docks_unavailable 1
-    bikes_available 1
-    bikes_unavailable 1
+    docks_a 1
+    docks_u 1
+    bikes_a 1
+    bikes_u 1
     station
   end
 end

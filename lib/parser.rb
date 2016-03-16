@@ -41,10 +41,10 @@ class Parser
   end
 
   def stat_only_fields
-    ['docks_available',
-     'docks_unavailable',
-     'bikes_available',
-     'bikes_unavailable']
+    ['docks_a',
+     'docks_u',
+     'bikes_a',
+     'bikes_u']
   end
 
   def stat_fields

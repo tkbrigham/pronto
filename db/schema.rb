@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160310013716) do
   enable_extension "plpgsql"
 
   create_table "station_stats", force: :cascade do |t|
-    t.integer  "station_id"
+    t.integer  "station_id",           null: false
     t.integer  "timestamp"
     t.integer  "status"
     t.boolean  "blocked"
@@ -27,27 +27,24 @@ ActiveRecord::Schema.define(version: 20160310013716) do
     t.boolean  "has_keys_available"
     t.datetime "latest_update"
     t.datetime "latest_communication"
-    t.integer  "docks_available"
-    t.integer  "docks_unavailable"
-    t.integer  "bikes_available"
-    t.integer  "bikes_unavailable"
+    t.integer  "docks_a"
+    t.integer  "docks_u"
+    t.integer  "bikes_a"
+    t.integer  "bikes_u"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
-  add_index "station_stats", ["station_id"], name: "index_station_stats_on_station_id", using: :btree
-  add_index "station_stats", ["timestamp"], name: "index_station_stats_on_timestamp", using: :btree
-
   create_table "station_summaries", force: :cascade do |t|
-    t.integer  "station_id", null: false
+    t.integer  "station_id",             null: false
     t.integer  "timestamp"
-    t.decimal  "avg_dock_a"
-    t.decimal  "avg_dock_u"
-    t.decimal  "avg_bike_a"
-    t.decimal  "avg_bike_u"
-    t.integer  "samples"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "tot_dock_a", default: 0
+    t.integer  "tot_dock_u", default: 0
+    t.integer  "tot_bike_a", default: 0
+    t.integer  "tot_bike_u", default: 0
+    t.integer  "samples",    default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "station_summaries", ["station_id"], name: "index_station_summaries_on_station_id", using: :btree
