@@ -35,4 +35,18 @@ RSpec.describe ProntoSummarizer do
       expect(old_stats.reload).to be_blank
     end
   end
+
+  describe "#update" do
+    after do
+      summarizer.update
+    end
+
+    it "calls summarize" do
+      expect(summarizer).to receive(:summarize)
+    end
+
+    it "calls clean" do
+      expect(summarizer).to receive(:clean)
+    end
+  end
 end
