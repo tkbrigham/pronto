@@ -13,10 +13,10 @@ class StationMapper
     'bl' => 'has_keys_available',
     'la' => 'lat',
     'lo' => 'lon',
-    'da' => 'docks_available',
-    'dx' => 'docks_unavailable',
-    'ba' => 'bikes_available',
-    'bx' => 'bikes_unavailable'
+    'da' => 'docks_a',
+    'dx' => 'docks_u',
+    'ba' => 'bikes_a',
+    'bx' => 'bikes_u'
   }
 
   DATETIME_FIELDS = ['latest_update', 'latest_communication']
