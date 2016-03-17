@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Scraper do
   describe "#download" do
-    before(:all) do
+    before do
       VCR.use_cassette("pronto_text") do
         scraper = Scraper.new
         scraper.download
