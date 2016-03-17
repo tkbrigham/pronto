@@ -8,41 +8,41 @@ RSpec.describe StatSummarizer do
                           timestamp: stat_summed.timestamp) }
   let(:summarizer) { StatSummarizer.new(stat_summed) }
 
-  #describe "#stat" do
-  #  it "will respond" do
-  #    expect(summarizer).to respond_to(:stat)
-  #    expect(summarizer.stat).to be_a(StationStat)
-  #  end
+  describe "#stat" do
+    it "will respond" do
+      expect(summarizer).to respond_to(:stat)
+      expect(summarizer.stat).to be_a(StationStat)
+    end
 
-  #  context 'with existing summary' do
-  #    it 'returns stat with same timestamp as summary' do
-  #      expect(summarizer.stat.timestamp).to eq(summarizer.summary.timestamp)
-  #    end
+    context 'with existing summary' do
+      it 'returns stat with same timestamp as summary' do
+        expect(summarizer.stat.timestamp).to eq(summarizer.summary.timestamp)
+      end
 
-  #    it 'returns stat with same station as summary' do
-  #      expect(summarizer.stat.station).to eq(summarizer.summary.station)
-  #    end
-  #  end
-  #end
+      it 'returns stat with same station as summary' do
+        expect(summarizer.stat.station).to eq(summarizer.summary.station)
+      end
+    end
+  end
 
-  #describe "#summary" do
-  #  it "will respond" do
-  #    expect(summarizer).to respond_to(:summary)
-  #  end
+  describe "#summary" do
+    it "will respond" do
+      expect(summarizer).to respond_to(:summary)
+    end
 
-  #  context "with existing summary" do
-  #    it "returns a StationSummary" do
-  #      expect(summarizer.summary).to be_a(StationSummary)
-  #    end
-  #  end
+    context "with existing summary" do
+      it "returns a StationSummary" do
+        expect(summarizer.summary).to be_a(StationSummary)
+      end
+    end
 
-  #  context "with no summary" do
-  #    let(:summarizer) { StatSummarizer.new(stat_not_summed) }
-  #    it "returns nil" do
-  #      expect(summarizer.summary).to be_nil
-  #    end
-  #  end
-  #end
+    context "with no summary" do
+      let(:summarizer) { StatSummarizer.new(stat_not_summed) }
+      it "returns nil" do
+        expect(summarizer.summary).to be_nil
+      end
+    end
+  end
 
   describe "#find_or_create_summary" do
     it "creates StationSummary if it doesn't exist" do
@@ -51,7 +51,6 @@ RSpec.describe StatSummarizer do
     end
 
     it "finds StationSummary if exists" do
-      summarizer = StatSummarizer.new(stat_summed)
       expect{summarizer.find_or_create_summary}.to_not change{StationSummary.count}
       expect(summarizer.find_or_create_summary).to eq(summary)
     end
@@ -78,7 +77,4 @@ RSpec.describe StatSummarizer do
       expect{summarizer.summarize}.to change{summarizer.summary.samples}.by(1)
     end
   end
-
-  xit "removes StationStats prior to one hour ago"
-  xit "sets StationSummary last_stat"
 end
