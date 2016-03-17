@@ -9,13 +9,13 @@ RSpec.describe Parser do
     end
 
     it "doesn't create new stations when they exist" do
-      create(:station)
+      create(:station, pronto_id: 66)
       expect{ parser.parse }.to change{ Station.count }.by(53)
       expect(Station.count).to eq(54)
     end
 
     it "updates pre-existing station" do
-      s = create(:station)
+      s = create(:station, pronto_id: 66)
       expect(s.blocked).to eq(nil)
       parser.parse
       expect(s.reload.blocked).to eq(false)
