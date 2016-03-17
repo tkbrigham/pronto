@@ -12,4 +12,8 @@ class ProntoSummarizer
       StatSummarizer.new(stat).summarize
     end
   end
+
+  def clean
+    StationStat.where('timestamp <= ?', @timestamp - 100).destroy_all
+  end
 end
