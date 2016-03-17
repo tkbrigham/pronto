@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Parser do
-  let(:parser) { Parser.new }
+  let(:parser) { Parser.new('spec/fixtures/pronto_scrape.txt') }
 
   describe "#parse" do
     it "changes count" do
@@ -9,13 +9,13 @@ RSpec.describe Parser do
     end
 
     it "doesn't create new stations when they exist" do
-      Station.create!(pronto_id: 66)
+      create(:station)
       expect{ parser.parse }.to change{ Station.count }.by(53)
       expect(Station.count).to eq(54)
     end
 
     it "updates pre-existing station" do
-      s = Station.create!(pronto_id: 66)
+      s = create(:station)
       expect(s.blocked).to eq(nil)
       parser.parse
       expect(s.reload.blocked).to eq(false)

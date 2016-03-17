@@ -24,18 +24,16 @@ RSpec.describe StationMapper do
   end
 
   describe "#remap" do
-    before(:all) do
-      json = JSON.parse(File.open('spec/fixtures/station.json','r').read)
-      @mapper = StationMapper.new(json)
-    end
+    let(:json) { JSON.parse(File.open('spec/fixtures/station.json','r').read) }
+    let(:mapper) { StationMapper.new(json) }
 
     it "converts raw keys to mapped keys" do
       keys = StationMapper::MAPPINGS.values
-      expect(@mapper.remap.keys).to eq(keys)
+      expect(mapper.remap.keys).to eq(keys)
     end
 
     it "converts datetime values" do
-      dt_values = @mapper.remap.values_at(*StationMapper::DATETIME_FIELDS)
+      dt_values = mapper.remap.values_at(*StationMapper::DATETIME_FIELDS)
 
       dt_values.each do |val|
         expect(val).to be_a(Time)
