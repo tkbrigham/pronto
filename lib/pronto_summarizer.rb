@@ -6,4 +6,10 @@ class ProntoSummarizer
   def stats
     StationStat.where(timestamp: @timestamp)
   end
+
+  def summarize
+    stats.each do |stat|
+      StatSummarizer.new(stat).summarize
+    end
+  end
 end
