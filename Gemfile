@@ -34,6 +34,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'pry'
+  gem 'capistrano', '~> 3.4'
 end
 
 group :test do
