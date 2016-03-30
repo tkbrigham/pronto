@@ -5,16 +5,16 @@ RSpec.describe Scraper do
     before do
       VCR.use_cassette("pronto_text") do
         scraper = Scraper.new
-        scraper.download
+        scraper.download('test_scrape.txt')
       end
     end
 
-    it "produces tmp file" do
-      expect(File).to exist('tmp/pronto_scrape.txt')
+    it "produces file in scrapes dir" do
+      expect(File).to exist('scrapes/test_scrape.txt')
     end
 
-    context "tmp file" do
-      subject { File.read('tmp/pronto_scrape.txt') }
+    context "scrape file" do
+      subject { File.read('scrapes/test_scrape.txt') }
 
       it { include('stations') }
     end

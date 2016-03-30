@@ -19,7 +19,7 @@ class Parser
   private
 
   def default_file
-    Dir['tmp/*.txt'].last
+    Dir['scrapes/*.txt'].last
   end
 
   def parse_to_hash
