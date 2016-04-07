@@ -14,7 +14,7 @@ class ProntoSummarizer
   end
 
   def clean
-    StationStat.where('timestamp <= ?', @timestamp - 10).destroy_all
+    StationStat.where('created_at <= ?', Time.now - 1.hour).destroy_all
   end
 
   def update

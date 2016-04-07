@@ -25,11 +25,11 @@ RSpec.describe ProntoSummarizer do
 
   describe "#clean" do
     before do
-      54.times { create(:station_stat, timestamp: 559) }
+      54.times { create(:station_stat, created_at: Time.now - 2.hours) }
     end
 
     it "removes StationStats older than 1 hour" do
-      old_stats = StationStat.where('timestamp <= ?', 600)
+      old_stats = StationStat.where('created_at <= ?', Time.now - 1.hour)
       expect(old_stats.size).to eq(54)
       summarizer.clean
       expect(old_stats.reload).to be_blank
