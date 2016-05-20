@@ -1,1 +1,1 @@
-worker: bash scrape-runner.sh
+worker: bin/scrape-runner
