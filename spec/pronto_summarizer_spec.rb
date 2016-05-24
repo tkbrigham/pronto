@@ -24,15 +24,23 @@ RSpec.describe ProntoSummarizer do
   end
 
   describe "#clean" do
-    before do
+    it "removes StationStats older than 1 hour" do
       54.times { create(:station_stat, created_at: Time.now - 2.hours) }
+      old_stats = lambda {
+        StationStat.where('created_at <= ?', Time.now - 1.hour).size
+      }
+      expect{ summarizer.clean }.to change{ old_stats.call }.by(-54)
     end
 
-    it "removes StationStats older than 1 hour" do
-      old_stats = StationStat.where('created_at <= ?', Time.now - 1.hour)
-      expect(old_stats.size).to eq(54)
-      summarizer.clean
-      expect(old_stats.reload).to be_blank
+    it "changes Station#status to 0 if not updated in last 24 hours" do
+      zero = lambda { Station.where(status: 0).size }
+      Station.limit(9).update_all(updated_at: 25.hours.ago)
+      expect{ summarizer.clean }.to change{ zero.call }.by(9)
+    end
+
+    it "removes StationStats with Station that has status 0" do
+      Station.limit(9).update_all(status: 0)
+      expect{ summarizer.clean }.to change{ StationStat.count }.by(-9)
     end
   end
 
