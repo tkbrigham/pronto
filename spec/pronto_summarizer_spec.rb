@@ -38,8 +38,9 @@ RSpec.describe ProntoSummarizer do
       expect{ summarizer.clean }.to change{ zero.call }.by(9)
     end
 
-    it "removes StationStats with Station that has status 0" do
-      Station.limit(9).update_all(status: 0)
+    it "removes StationStats with Station that has status != 1" do
+      Station.limit(7).update_all(status: 2)
+      Station.limit(2).update_all(status: 0)
       expect{ summarizer.clean }.to change{ StationStat.count }.by(-9)
     end
   end
